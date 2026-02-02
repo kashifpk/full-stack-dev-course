@@ -1,0 +1,17 @@
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.idea/
+*.swp
+*.swo
+
+# Claude Code
+.claude/
+
+# Temporary work
+.claude-work/
+
+# Solutions (uploaded separately)
+**/solutions/
