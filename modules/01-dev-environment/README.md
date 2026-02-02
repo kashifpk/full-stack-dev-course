@@ -35,9 +35,52 @@ Containers solve the "works on my machine" problem:
 
 ## 1.2 Installing Prerequisites
 
-### Docker or Podman
+### Podman or Docker
 
-We'll use Docker Desktop or Podman. Both work identically for this course.
+We'll use **Podman** (recommended) or Docker. Both are container engines that work identically for this course. Podman is open-source, daemonless, and runs rootless by default, making it more secure.
+
+> **Note:** Throughout this course, commands shown with `podman` can be replaced with `docker` if you prefer Docker. They are command-compatible.
+
+#### Podman Installation (Recommended)
+
+**Windows:**
+1. Download and install [Podman Desktop](https://podman-desktop.io/)
+2. During installation, it will set up the Podman machine automatically
+3. Restart your computer if prompted
+
+**Linux (Ubuntu/Debian):**
+```bash
+sudo apt update
+sudo apt install podman podman-compose
+
+# Verify installation
+podman --version
+podman-compose --version
+```
+
+**Linux (Fedora/RHEL):**
+```bash
+sudo dnf install podman podman-compose
+
+# Verify installation
+podman --version
+podman-compose --version
+```
+
+**macOS:**
+```bash
+# Using Homebrew
+brew install podman podman-compose
+
+# Initialize and start Podman machine
+podman machine init
+podman machine start
+
+# Verify installation
+podman --version
+```
+
+#### Docker Installation (Alternative)
 
 **Windows:**
 1. Download and install [Docker Desktop](https://www.docker.com/products/docker-desktop/)
@@ -46,24 +89,30 @@ We'll use Docker Desktop or Podman. Both work identically for this course.
 
 **Linux (Ubuntu/Debian):**
 ```bash
-# Docker (recommended for Linux)
 sudo apt update
 sudo apt install docker.io docker-compose-v2
 sudo usermod -aG docker $USER
 # Log out and back in
-
-# Or Podman (rootless alternative)
-sudo apt install podman podman-compose
 ```
 
 **macOS:**
 1. Download and install [Docker Desktop for Mac](https://www.docker.com/products/docker-desktop/)
 
-**Verify installation:**
+**Verify Docker installation:**
 ```bash
 docker --version
 docker compose version
 ```
+
+#### Podman vs Docker: Key Differences
+
+| Feature | Podman | Docker |
+|---------|--------|--------|
+| Daemon | Daemonless | Requires daemon |
+| Root access | Rootless by default | Requires root (or group) |
+| CLI compatibility | Docker-compatible | - |
+| Compose command | `podman-compose` | `docker compose` |
+| License | Open source (Apache 2.0) | Docker Desktop requires license for enterprises |
 
 ### Python 3.11+
 
@@ -267,28 +316,40 @@ END $$;
 ```
 
 **Start the database:**
-```bash
-# Using podman-compose
-podman-compose up -d db
 
-# Or docker compose
-docker compose up -d db
+**Using Podman:**
+```bash
+# Start the database container
+podman-compose up -d db
 
 # Verify it's running
 podman-compose ps
-# or
-docker compose ps
 
 # Check logs
 podman-compose logs db
 ```
 
+**Using Docker:**
+```bash
+# Start the database container
+docker compose up -d db
+
+# Verify it's running
+docker compose ps
+
+# Check logs
+docker compose logs db
+```
+
 **Connect to verify:**
 ```bash
-# Using psql in the container
+# Using Podman
 podman exec -it jobboard-db psql -U jobboard -d jobboard
 
-# Or with a local client
+# Using Docker
+docker exec -it jobboard-db psql -U jobboard -d jobboard
+
+# Or with a local psql client (if installed)
 psql -h localhost -U jobboard -d jobboard
 ```
 
@@ -551,11 +612,24 @@ Test your knowledge: [Module 1 Quiz](quiz/quiz-1.md)
 ## Summary
 
 You now have:
-- ✅ Docker/Podman installed and working
+- ✅ Podman/Docker installed and working
 - ✅ PostgreSQL running in a container
 - ✅ Python 3.11+ with virtual environment
 - ✅ Node.js 20+ installed
 - ✅ VS Code configured for the project
 - ✅ Basic FastAPI app running
+
+## Additional Resources
+
+### Podman
+- [Podman Official Documentation](https://docs.podman.io/)
+- [Podman Desktop](https://podman-desktop.io/) - GUI for managing containers
+- [Podman Compose](https://github.com/containers/podman-compose) - Docker Compose compatible tool
+- [Podman Tutorial for Beginners](https://docs.podman.io/en/latest/Tutorials.html)
+
+### Docker
+- [Docker Official Documentation](https://docs.docker.com/)
+- [Docker Desktop](https://www.docker.com/products/docker-desktop/)
+- [Docker Compose Documentation](https://docs.docker.com/compose/)
 
 **Next Module:** [Modern Python Refresher](../02-modern-python/README.md)

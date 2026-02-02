@@ -3,7 +3,7 @@
 ## Objective
 Get comfortable with basic container commands.
 
-> **Note:** The commands below use `docker`. If you're using Podman, simply replace `docker` with `podman` and `docker compose` with `podman-compose`.
+> **Note:** The commands below use `podman`. If you're using Docker, simply replace `podman` with `docker` and `podman-compose` with `docker compose`.
 
 ## Tasks
 
@@ -11,25 +11,25 @@ Get comfortable with basic container commands.
 
 ```bash
 # List running containers
-docker ps
+podman ps
 
 # List all containers (including stopped)
-docker ps -a
+podman ps -a
 
 # View container logs
-docker logs jobboard-db
+podman logs jobboard-db
 
 # Follow logs in real-time
-docker logs -f jobboard-db
+podman logs -f jobboard-db
 ```
 
-**Question:** What information does `docker ps` show you? (List at least 5 columns)
+**Question:** What information does `podman ps` show you? (List at least 5 columns)
 
 ### Task 2: Execute Commands in Container
 
 ```bash
 # Open a shell in the running postgres container
-docker exec -it jobboard-db /bin/bash
+podman exec -it jobboard-db /bin/bash
 
 # Inside the container, explore:
 ls /var/lib/postgresql/data
@@ -41,7 +41,7 @@ exit
 
 ```bash
 # Connect to PostgreSQL directly
-docker exec -it jobboard-db psql -U jobboard -d jobboard
+podman exec -it jobboard-db psql -U jobboard -d jobboard
 
 # Inside psql, run these commands:
 \l                    -- List all databases
@@ -55,29 +55,29 @@ SELECT version();     -- Check PostgreSQL version
 
 ```bash
 # Stop the database
-docker compose stop db
+podman-compose stop db
 
 # Verify it's stopped
-docker ps
+podman ps
 
 # Start it again
-docker compose start db
+podman-compose start db
 
 # Restart
-docker compose restart db
+podman-compose restart db
 ```
 
 ### Task 5: Volume Persistence
 
 ```bash
 # Stop and remove the container
-docker compose down
+podman-compose down
 
 # Start again
-docker compose up -d db
+podman-compose up -d db
 
 # Connect and verify data persists
-docker exec -it jobboard-db psql -U jobboard -d jobboard -c "SELECT 1;"
+podman exec -it jobboard-db psql -U jobboard -d jobboard -c "SELECT 1;"
 ```
 
 ## Verification

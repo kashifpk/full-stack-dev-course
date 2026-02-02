@@ -43,6 +43,10 @@ jobboard/
 
 **Verification:**
 ```bash
+# Using Podman
+podman exec -it jobboard-db psql -U jobboard -d jobboard -c "SELECT 1 as test;"
+
+# Using Docker
 docker exec -it jobboard-db psql -U jobboard -d jobboard -c "SELECT 1 as test;"
 ```
 
@@ -90,7 +94,7 @@ Create a `README.md` in the project root with:
 
 ## Submission Checklist
 
-- [ ] `docker-compose up -d` starts PostgreSQL successfully
+- [ ] `podman-compose up -d` (or `docker compose up -d`) starts PostgreSQL successfully
 - [ ] Can connect to PostgreSQL from host machine
 - [ ] `uvicorn app.main:app --reload` starts without errors
 - [ ] `http://localhost:8000/docs` shows Swagger UI
