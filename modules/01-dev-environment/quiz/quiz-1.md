@@ -8,7 +8,7 @@ Test your understanding of the concepts covered in this module.
 
 ### Q1: Container Volumes
 
-What happens to data in PostgreSQL when you run `podman-compose down` (or `docker compose down`)?
+What happens to data in PostgreSQL when you run `podman compose down` (or `docker compose down`)?
 
 A) All data is deleted immediately
 B) Data persists because we defined a named volume

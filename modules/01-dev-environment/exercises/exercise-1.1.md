@@ -3,7 +3,7 @@
 ## Objective
 Get comfortable with basic container commands.
 
-> **Note:** The commands below use `podman`. If you're using Docker, simply replace `podman` with `docker` and `podman-compose` with `docker compose`.
+> **Note:** The commands below use `podman`. If you're using Docker, simply replace `podman` with `docker` and `podman compose` with `docker compose`.
 
 ## Tasks
 
@@ -55,26 +55,26 @@ SELECT version();     -- Check PostgreSQL version
 
 ```bash
 # Stop the database
-podman-compose stop db
+podman compose stop db
 
 # Verify it's stopped
 podman ps
 
 # Start it again
-podman-compose start db
+podman compose start db
 
 # Restart
-podman-compose restart db
+podman compose restart db
 ```
 
 ### Task 5: Volume Persistence
 
 ```bash
 # Stop and remove the container
-podman-compose down
+podman compose down
 
 # Start again
-podman-compose up -d db
+podman compose up -d db
 
 # Connect and verify data persists
 podman exec -it jobboard-db psql -U jobboard -d jobboard -c "SELECT 1;"

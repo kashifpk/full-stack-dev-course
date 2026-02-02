@@ -51,26 +51,26 @@ We'll use **Podman** (recommended) or Docker. Both are container engines that wo
 **Linux (Ubuntu/Debian):**
 ```bash
 sudo apt update
-sudo apt install podman podman-compose
+sudo apt install podman
 
 # Verify installation
 podman --version
-podman-compose --version
+podman compose version
 ```
 
 **Linux (Fedora/RHEL):**
 ```bash
-sudo dnf install podman podman-compose
+sudo dnf install podman
 
 # Verify installation
 podman --version
-podman-compose --version
+podman compose version
 ```
 
 **macOS:**
 ```bash
 # Using Homebrew
-brew install podman podman-compose
+brew install podman
 
 # Initialize and start Podman machine
 podman machine init
@@ -78,6 +78,7 @@ podman machine start
 
 # Verify installation
 podman --version
+podman compose version
 ```
 
 #### Docker Installation (Alternative)
@@ -111,7 +112,7 @@ docker compose version
 | Daemon | Daemonless | Requires daemon |
 | Root access | Rootless by default | Requires root (or group) |
 | CLI compatibility | Docker-compatible | - |
-| Compose command | `podman-compose` | `docker compose` |
+| Compose command | `podman compose` | `docker compose` |
 | License | Open source (Apache 2.0) | Docker Desktop requires license for enterprises |
 
 ### Python 3.11+
@@ -147,32 +148,32 @@ brew install python@3.11
 # Or download from python.org
 ```
 
-### Node.js 20+ (LTS)
+### Bun (JavaScript Runtime & Package Manager)
+
+[Bun](https://bun.sh/) is a fast all-in-one JavaScript runtime and package manager. It's significantly faster than Node.js/npm and serves as a drop-in replacement.
 
 **Windows:**
-1. Download Node.js LTS from [nodejs.org](https://nodejs.org/)
-2. Run the installer (includes npm)
-3. Verify in PowerShell:
-   ```powershell
-   node --version
-   npm --version
-   ```
+```powershell
+# Using PowerShell (run as Administrator)
+powershell -c "irm bun.sh/install.ps1 | iex"
 
-**Linux/macOS (using nvm - recommended):**
+# Verify installation
+bun --version
+```
+
+**Linux/macOS:**
 ```bash
-# Install nvm
-curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.39.7/install.sh | bash
+# Install Bun
+curl -fsSL https://bun.sh/install | bash
+
+# Restart your terminal or run:
 source ~/.bashrc  # or ~/.zshrc on macOS
 
-# Install and use Node 20
-nvm install 20
-nvm use 20
-nvm alias default 20
-
-# Verify
-node --version  # Should show v20.x.x
-npm --version
+# Verify installation
+bun --version
 ```
+
+> **Note:** Bun is compatible with Node.js and npm. Commands like `bun install`, `bun run dev`, etc., work the same way as their npm equivalents. Throughout this course, we'll use `bun` instead of `npm`.
 
 ### VS Code
 
@@ -320,13 +321,13 @@ END $$;
 **Using Podman:**
 ```bash
 # Start the database container
-podman-compose up -d db
+podman compose up -d db
 
 # Verify it's running
-podman-compose ps
+podman compose ps
 
 # Check logs
-podman-compose logs db
+podman compose logs db
 ```
 
 **Using Docker:**
@@ -615,7 +616,7 @@ You now have:
 - ✅ Podman/Docker installed and working
 - ✅ PostgreSQL running in a container
 - ✅ Python 3.11+ with virtual environment
-- ✅ Node.js 20+ installed
+- ✅ Bun (JavaScript runtime) installed
 - ✅ VS Code configured for the project
 - ✅ Basic FastAPI app running
 
@@ -624,12 +625,17 @@ You now have:
 ### Podman
 - [Podman Official Documentation](https://docs.podman.io/)
 - [Podman Desktop](https://podman-desktop.io/) - GUI for managing containers
-- [Podman Compose](https://github.com/containers/podman-compose) - Docker Compose compatible tool
+- [Podman Compose Documentation](https://docs.podman.io/en/latest/markdown/podman-compose.1.html)
 - [Podman Tutorial for Beginners](https://docs.podman.io/en/latest/Tutorials.html)
 
 ### Docker
 - [Docker Official Documentation](https://docs.docker.com/)
 - [Docker Desktop](https://www.docker.com/products/docker-desktop/)
 - [Docker Compose Documentation](https://docs.docker.com/compose/)
+
+### Bun
+- [Bun Official Documentation](https://bun.sh/docs)
+- [Bun Installation Guide](https://bun.sh/docs/installation)
+- [Bun vs Node.js Comparison](https://bun.sh/docs/runtime/nodejs-apis)
 
 **Next Module:** [Modern Python Refresher](../02-modern-python/README.md)
